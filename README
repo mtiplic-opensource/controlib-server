@@ -7,9 +7,11 @@
 
 What is it?
 
-controlib-server-sample is the sample project using controlib-server.
-Its goal is to load jar plugins enabling translation from client's data into
-OS signals in order to simulate mouse or keyboard inputs.
+controlib-server is a JAVA library allowing developpers to connect Android
+devices with applications using controlib-client. It decodes messages sent with
+the device in order data can be used by jar plugins.
+Main goal is to control your computer, whatever is the OS, with your Android
+phone and let the developpers build specific remotes according to their needs.
 
 For the moment, the project has just begun and has not been released yet.
 
