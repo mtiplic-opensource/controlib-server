@@ -1,4 +1,4 @@
-package com.epita.j2ee.controlibserver.connection;
+package com.epita.mti.plic.opensource.controlibserver.connection;
 
 import java.io.IOException;
 import java.net.*;

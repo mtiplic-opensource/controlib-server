@@ -1,4 +1,4 @@
-package com.epita.j2ee.controlibserver.qrcode;
+package com.epita.mti.plic.opensource.controlibserver.qrcode;
 
 
 import com.google.zxing.BarcodeFormat;
