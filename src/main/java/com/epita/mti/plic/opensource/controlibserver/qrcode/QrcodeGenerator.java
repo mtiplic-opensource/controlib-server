@@ -20,10 +20,10 @@ import javax.imageio.ImageIO;
 public class QrcodeGenerator
 {
 
-  public static BufferedImage generateQrcode(String ip, int port, int width, int height) throws WriterException
+  public static BufferedImage generateQrcode(String ip, int output_port, int input_port, int width, int height) throws WriterException
   {
     BitMatrix mtx;
-    String input = ip + "|" + String.valueOf(port);
+    String input = ip + "|" + String.valueOf(input_port) + "|" + String.valueOf(output_port);
     QRCodeWriter writer = new QRCodeWriter();
     mtx = writer.encode(input, BarcodeFormat.QR_CODE, width, height);
     if (mtx != null)
@@ -34,10 +34,10 @@ public class QrcodeGenerator
     return null;
   }
 
-  public static void generateQrcodeToFile(File file, String format, String ip, int port, int width, int height) throws WriterException, IOException
+  public static void generateQrcodeToFile(File file, String format, String ip, int input_port, int output_port, int width, int height) throws WriterException, IOException
   {
     BitMatrix mtx;
-    String input = ip + "|" + String.valueOf(port);
+    String input = ip + "|" + String.valueOf(input_port) + "|" + String.valueOf(output_port);
     QRCodeWriter writer = new QRCodeWriter();
     mtx = writer.encode(input, BarcodeFormat.QR_CODE, width, height);
     if (mtx != null)

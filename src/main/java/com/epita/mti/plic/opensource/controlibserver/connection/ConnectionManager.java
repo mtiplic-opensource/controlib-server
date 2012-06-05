@@ -16,7 +16,8 @@ public class ConnectionManager
   /**
    * The ServerSocket which will handle the connection
    */
-  private ServerSocket server;
+  private ServerSocket inputSocket;
+  private ServerSocket outputSocket;
 
   public ConnectionManager()
   {
@@ -28,13 +29,20 @@ public class ConnectionManager
    * @param port The port on which the connection is opened
    * @return
    */
-  public boolean openConnection(int port) throws IOException
+  public boolean openConnection(int output, int input) throws IOException
   {
-    if (this.server != null)
+    if (this.outputSocket != null)
     {
       return (false);
     }
-    this.server = new ServerSocket(port);
+    this.outputSocket = new ServerSocket(output);
+
+    if (this.inputSocket != null)
+    {
+      return (false);
+    }
+    this.inputSocket = new ServerSocket(input);
+
     return (true);
   }
 
@@ -45,7 +53,8 @@ public class ConnectionManager
    */
   public void closeConnection() throws IOException
   {
-    this.server.close();
+    this.outputSocket.close();
+    this.inputSocket.close();
   }
 
   /**
@@ -82,8 +91,15 @@ public class ConnectionManager
     return res;
   }
 
-  public ServerSocket getServer()
+  public ServerSocket getInputSocket()
   {
-    return server;
+    return inputSocket;
   }
+
+  public ServerSocket getOutputSocket()
+  {
+    return outputSocket;
+  }
+
+
 }
