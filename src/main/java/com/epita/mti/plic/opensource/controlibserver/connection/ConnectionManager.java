@@ -2,7 +2,8 @@ package com.epita.mti.plic.opensource.controlibserver.connection;
 
 import java.io.IOException;
 import java.net.*;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.HashMap;
 
 /**
  * This class contains methods to open a connection from the server on a network
@@ -29,7 +30,7 @@ public class ConnectionManager
    * @param port The port on which the connection is opened
    * @return
    */
-  public boolean openConnection(int output, int input) throws IOException
+  public boolean openConnection(int input, int output) throws IOException
   {
     if (this.outputSocket != null)
     {

@@ -13,6 +13,7 @@ import java.util.jar.JarFile;
  * @author Benoit "KIDdAe" Vasseur
  * This class is used to get all plugins contained in a jar file sent by the client.
  */
+
 public class JarClassLoader
 {
 
