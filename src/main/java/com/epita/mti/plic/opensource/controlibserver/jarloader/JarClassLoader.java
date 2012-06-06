@@ -33,7 +33,7 @@ public class JarClassLoader
    */
   public void initializeLoader() throws Exception
   {
-    File[] f = finder.listFiles("pugins/");
+    File[] f = finder.listFiles("plugins/");
     URLClassLoader loader;
     Enumeration enumeration;
     int length = f == null ? 0 : f.length;

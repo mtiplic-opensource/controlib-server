@@ -19,18 +19,29 @@ public class ConnectionManager
    */
   private ServerSocket inputSocket;
   private ServerSocket outputSocket;
+  private ServerSocket mainSocket;
 
   public ConnectionManager()
   {
   }
 
+  public boolean openConnection(int mainPort) throws IOException
+  {
+    if (this.mainSocket != null)
+    {
+      return (false);
+    }
+    this.mainSocket = new ServerSocket(mainPort);
+    return true;
+  }
+  
   /**
    * Open a connection on the network
    *
    * @param port The port on which the connection is opened
    * @return
    */
-  public boolean openConnection(int input, int output) throws IOException
+  public boolean openPluginConnection(int input, int output) throws IOException
   {
     if (this.outputSocket != null)
     {
