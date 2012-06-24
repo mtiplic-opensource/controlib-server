@@ -114,4 +114,9 @@ public class ConnectionManager
   }
 
 
+  public ServerSocket getMainSocket()
+  {
+    return mainSocket;
+  }
+
 }

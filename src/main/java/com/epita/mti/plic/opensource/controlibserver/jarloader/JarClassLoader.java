@@ -26,6 +26,7 @@ public class JarClassLoader
     // TODO Auto-generated constructor stub
     finder = new JarFinder();
     this.server = theServer;
+        plugins = new ArrayList<Class<?>>();
   }
 
   /*
@@ -37,8 +38,6 @@ public class JarClassLoader
     URLClassLoader loader;
     Enumeration enumeration;
     int length = f == null ? 0 : f.length;
-
-    plugins = new ArrayList<Class<?>>();
 
     for (int i = 0; i < length; i++)
     {
