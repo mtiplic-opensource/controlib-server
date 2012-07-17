@@ -60,7 +60,7 @@ public class JarClassLoader
           plugins.add(Class.forName(tmp, true, loader));
         }
       }
-      server.updatePlugins();
+     // server.updatePlugins();
     }
   }
 
@@ -68,7 +68,7 @@ public class JarClassLoader
    * Adds a new plugins to the already known plugins.
    * This method should be used when the server receive a new plugin definition.
    */
-  public void addPlugins(String jarFile) throws Exception
+  public void addPlugins(String jarFile, int index) throws Exception
   {
     File file = new File(jarFile);
     URL u = new URL("file://" + file.getAbsolutePath());
@@ -88,7 +88,7 @@ public class JarClassLoader
         plugins.add(Class.forName(tmp, true, loader));
       }
     }
-    server.updatePlugins();
+    server.updatePlugins(index);
   }
 
   public ArrayList<Class<?>> getPlugins()

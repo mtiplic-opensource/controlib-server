@@ -6,5 +6,5 @@ package com.epita.mti.plic.opensource.controlibserver.server;
  */
 public interface CLServer
 {
-  public void updatePlugins();
+  public void updatePlugins(int index);
 }
