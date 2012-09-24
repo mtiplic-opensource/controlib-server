@@ -26,7 +26,14 @@ public class JarClassLoader
     // TODO Auto-generated constructor stub
     finder = new JarFinder();
     this.server = theServer;
-        plugins = new ArrayList<Class<?>>();
+    plugins = new ArrayList<Class<?>>();
+  }
+  
+  public JarClassLoader()
+  {
+    // TODO Auto-generated constructor stub
+    finder = new JarFinder();
+    plugins = new ArrayList<Class<?>>();
   }
 
   /*
@@ -105,4 +112,13 @@ public class JarClassLoader
   {
     this.finder = finder;
   }
+
+    public CLServer getServer() {
+        return server;
+    }
+
+    public void setServer(CLServer server) {
+        this.server = server;
+    }
+  
 }
