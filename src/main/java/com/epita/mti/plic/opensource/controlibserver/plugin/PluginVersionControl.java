@@ -14,9 +14,35 @@ public class PluginVersionControl
 {
     private JarClassLoader jarClassLoader;
 
-    public PluginVersionControl() throws Exception {
+    public PluginVersionControl() throws Exception
+    {
         this.jarClassLoader = new JarClassLoader();
         jarClassLoader.initializeLoader();
+    }
+    
+    /**
+     * 
+     * @param oldVersion
+     * @param newVersion
+     * @return true if newVersion is higher, false otherwise
+     */
+    public Boolean compareVersion(String[] oldVersion, String[] newVersion)
+    {
+       for (int i = 0; i < Math.max(oldVersion.length, newVersion.length); ++i)
+       {   
+        String oldString = oldVersion[i];
+        String newString = newVersion[i];
+        if (oldString.compareTo(newString) < 0) {
+               return true;
+           }
+        else if (oldString.compareTo(newString) > 0) {
+               return false;
+           }
+       }
+       if (oldVersion.length > newVersion.length) {
+            return false;
+        }
+       return true;
     }
     
     /**
@@ -56,32 +82,9 @@ public class PluginVersionControl
             }
             break;
         }
-        if (version.equals(""))
-        {
-            return false;
-        }
-        for (int i = 0; i < version.length(); ++i)
-        {
-            if (version.charAt(i) == pluginVersion.charAt(i))
-            {
-                continue;
-            }
-            else
-            {
-                char oldChar = version.charAt(i);
-                char newChar = pluginVersion.charAt(i);
-                if (newChar > oldChar)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-        return false;
+        String[] oldVersionArray = version.split("\\.");
+        String[] newVersionArray = pluginVersion.split("\\.");
+        
+        return compareVersion(oldVersionArray, newVersionArray);
     }
-    
-    
 }
