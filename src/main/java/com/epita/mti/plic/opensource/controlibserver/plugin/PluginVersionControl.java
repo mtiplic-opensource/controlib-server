@@ -26,7 +26,7 @@ public class PluginVersionControl
      * @param newVersion
      * @return true if newVersion is higher, false otherwise
      */
-    public Boolean compareVersion(String[] oldVersion, String[] newVersion)
+    private Boolean compareVersion(String[] oldVersion, String[] newVersion)
     {
        for (int i = 0; i < Math.max(oldVersion.length, newVersion.length); ++i)
        {   
@@ -58,7 +58,7 @@ public class PluginVersionControl
         String version = "";
         for (Class plugin : plugins)
         {
-            if (pluginClass != plugin)
+            if (!pluginClass.equals(plugin))
             {
                 continue;
             }
