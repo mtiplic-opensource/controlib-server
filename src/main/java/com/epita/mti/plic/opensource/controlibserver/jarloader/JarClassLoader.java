@@ -86,7 +86,7 @@ public class JarClassLoader {
     public boolean testPlugins(String jarFile, int index) throws Exception
     {
         // tmp loader to test plugin version
-        File tmpFile = new File("tmp/" + jarFile);
+        File tmpFile = new File(jarFile);
         URL uTmp = new URL("file://" + tmpFile.getAbsolutePath());
         URLClassLoader loaderTmp = new URLClassLoader(new URL[]{
                     uTmp
