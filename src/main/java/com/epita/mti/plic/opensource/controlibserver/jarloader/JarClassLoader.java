@@ -82,7 +82,33 @@ public class JarClassLoader {
         }
         return "";
     }
-
+    
+    public boolean testPlugins(String jarFile, int index) throws Exception
+    {
+        // tmp loader to test plugin version
+        File tmpFile = new File("tmp/" + jarFile);
+        URL uTmp = new URL("file://" + tmpFile.getAbsolutePath());
+        URLClassLoader loaderTmp = new URLClassLoader(new URL[]{
+                    uTmp
+                });
+        JarFile jar = new JarFile(tmpFile.getAbsolutePath());
+        Enumeration enumeration = jar.entries();
+        PluginVersionControl pvc = new PluginVersionControl();
+        while (enumeration.hasMoreElements()) {
+            String tmp = enumeration.nextElement().toString();
+            if (tmp.length() > 6 && tmp.substring(tmp.length() - 6).compareTo(".class") == 0) {
+                tmp = tmp.substring(0, tmp.length() - 6);
+                tmp = tmp.replaceAll("/", ".");
+                
+                Class<?> newClass = Class.forName(tmp, true, loaderTmp);
+                if (pvc.testPluginVersion(newClass,getVersionForPlugin(newClass))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
     /*
      * Adds a new plugins to the already known plugins.
      * This method should be used when the server receive a new plugin definition.
@@ -94,12 +120,6 @@ public class JarClassLoader {
                     u
                 });
 
-        // tmp loader to test plugin version
-        URL uTmp = new URL("file://tmp");
-        URLClassLoader loaderTmp = new URLClassLoader(new URL[]{
-                    uTmp
-                });
-
         JarFile jar = new JarFile(file.getAbsolutePath());
         Enumeration enumeration = jar.entries();
         PluginVersionControl pvc = new PluginVersionControl();
@@ -108,11 +128,8 @@ public class JarClassLoader {
             if (tmp.length() > 6 && tmp.substring(tmp.length() - 6).compareTo(".class") == 0) {
                 tmp = tmp.substring(0, tmp.length() - 6);
                 tmp = tmp.replaceAll("/", ".");
-
-                Class<?> newClass = Class.forName(tmp, true, loaderTmp);
-                if (pvc.testPluginVersion(newClass,getVersionForPlugin(newClass))) {
-                    plugins.add(Class.forName(tmp, true, loader));
-                }
+                
+                plugins.add(Class.forName(tmp, true, loader));
             }
         }
         server.updatePlugins(index);
